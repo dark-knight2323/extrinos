@@ -36,14 +36,15 @@ title_suggestion_chain = prompt_template_for_title_suggestion | llm # defining t
 
 # Define a PromptTemplate for blog content generation
 prompt_template_for_title = PromptTemplate(
-    input_variables=['title', 'keywords', 'blog_length'],  # Specify input variables
-    template=  # Define the prompt template
-    '''Write a high-quality, informative, and plagiarism-free blog post on the topic: "{title}". 
+    input_variables=['title', 'keywords', 'blog_length'],
+    template= '''Write a high-quality, informative, and plagiarism-free blog post on the topic: "{title}". 
     Target the content towards a beginner audience. 
     Use a conversational writing style and structure the content with an introduction, body paragraphs, and a conclusion. 
     Try to incorporate these keywords: {keywords}. 
     Aim for a content length of {blog_length} words. 
-    Make the content engaging and capture the reader's attention.'''
+
+    If the blog length is less than 200 words, summarize the main points while ensuring clarity and completeness..
+    '''
 )
 
 title_chain = prompt_template_for_title | llm # Create a chain for title generation
